@@ -29,7 +29,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).contentType(MediaType.TEXT_PLAIN).body(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
     }
 
-    @ExceptionHandler({EntityNotFoundException.class})
+    @ExceptionHandler(EntityNotFoundException.class)
     public final ResponseEntity<Object> handleEntityNotFound(Exception ex) {
 
         log(ex);
