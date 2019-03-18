@@ -1,11 +1,6 @@
 package com.devspods.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -15,9 +10,9 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	
-    @NotNull
+
     @Size(min = 4, max = 128)
+    @Column(nullable = false, unique = true)
     private String name;
 
     public Category() {}
