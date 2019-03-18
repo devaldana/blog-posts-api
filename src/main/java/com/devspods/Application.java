@@ -1,8 +1,11 @@
 package com.devspods;
 
+import com.devspods.domain.Author;
 import com.devspods.domain.Category;
 import com.devspods.domain.Post;
+import com.devspods.repositories.AuthorRepository;
 import com.devspods.repositories.PostRepository;
+import com.devspods.util.Sex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +18,9 @@ public class Application {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private AuthorRepository authorRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
@@ -23,7 +29,24 @@ public class Application {
     public CommandLineRunner run() {
 		
         return (args) -> {
-			
+
+            Author author = new Author();
+
+            author.setName("David");
+            author.setLastName("Aldana");
+            author.setSex(Sex.MALE);
+
+            Author author2 = new Author();
+
+            author2.setName("Gabriela");
+            author2.setLastName("Aldana");
+            author2.setSex(Sex.FEMALE);
+
+            this.authorRepository.save(author);
+            this.authorRepository.save(author2);
+
+
+
             Post post = new Post();
 
             post.setCategory(new Category("Java"));

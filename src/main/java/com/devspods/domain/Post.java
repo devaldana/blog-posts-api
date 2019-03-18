@@ -1,17 +1,9 @@
 package com.devspods.domain;
 
-import java.time.LocalDateTime;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "posts")
@@ -20,17 +12,18 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	
+
+    @NotNull
     private LocalDateTime date = LocalDateTime.now();
     private LocalDateTime dateOfLastUpdate;
 	
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "text", nullable = false)
     private String title;
 	
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "text", nullable = false)
     private String excerpt;
 	
-    @Column(columnDefinition = "longtext")
+    @Column(columnDefinition = "longtext", nullable = false)
     private String content;
 	
     @Valid
