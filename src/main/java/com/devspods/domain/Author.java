@@ -1,8 +1,7 @@
 package com.devspods.domain;
 
-import com.devspods.util.Sex;
-
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -23,16 +22,24 @@ public class Author {
     @Column(nullable = false, length = 32)
     private String lastName;
 
-    @NotNull
-    private LocalDateTime signUpDate;
+    @Column(columnDefinition = "text")
+    private String avatarPath;
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(columnDefinition = "tinyint", nullable = false)
+    @Column(columnDefinition = "text")
+    private String description;
+
+    @NotNull
+    private LocalDateTime dateOfSingUp;
+
+    @Valid
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sex_id")
     private Sex sex;
 
     public Author(){
 
-        this.signUpDate = LocalDateTime.now();
+        this.dateOfSingUp = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -59,12 +66,28 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public LocalDateTime getSignUpDate() {
-        return signUpDate;
+    public LocalDateTime getDateOfSingUp() {
+        return dateOfSingUp;
     }
 
-    public void setSignUpDate(LocalDateTime signUpDate) {
-        this.signUpDate = signUpDate;
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDateOfSingUp(LocalDateTime dateOfSingUp) {
+        this.dateOfSingUp = dateOfSingUp;
     }
 
     public Sex getSex() {

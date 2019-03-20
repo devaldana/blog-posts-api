@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "posts")
@@ -14,9 +15,12 @@ public class Post {
     private Long id;
 
     @NotNull
-    private LocalDateTime date = LocalDateTime.now();
+    private LocalDateTime dateOfCreation;
+
+    @NotNull
     private LocalDateTime dateOfLastUpdate;
-	
+    private LocalDateTime dateOfPublication;
+
     @Column(columnDefinition = "text", nullable = false)
     private String title;
 	
@@ -31,17 +35,37 @@ public class Post {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
-	
+
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "status_id")
+    private PostStatus status;
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "posts_authors",
+            joinColumns = { @JoinColumn(name = "post_id")},
+            inverseJoinColumns = { @JoinColumn(name = "author_id")}
+            )
+    private Set<Author> authors;
+
+    public Post() {
+
+        this.dateOfCreation = LocalDateTime.now();
+        this.dateOfLastUpdate = this.dateOfCreation;
+    }
+
     public Long getId() {
         return this.id;
     }
 
-    public LocalDateTime getDate() {
-        return this.date;
+    public LocalDateTime getDateOfCreation() {
+        return dateOfCreation;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setDateOfCreation(LocalDateTime dateOfCreation) {
+        this.dateOfCreation = dateOfCreation;
     }
 
     public LocalDateTime getDateOfLastUpdate() {
@@ -82,5 +106,29 @@ public class Post {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public PostStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(PostStatus status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getDateOfPublication() {
+        return dateOfPublication;
+    }
+
+    public void setDateOfPublication(LocalDateTime dateOfPublication) {
+        this.dateOfPublication = dateOfPublication;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
     }
 }

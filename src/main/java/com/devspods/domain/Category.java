@@ -1,50 +1,19 @@
 package com.devspods.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "categories")
-public class Category {
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Category extends Type {
 
-    @Size(min = 4, max = 128)
-    @Column(nullable = false, unique = true)
-    private String name;
+    public Category(){}
 
-    @Column(columnDefinition = "text")
-    private String description;
-
-    public Category() {}
-
-    public Category(final String name) {
-        this.name = name;
+    public Category(final String name){
+        super(name);
     }
 
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public Category(final String name, final String description){
+        super(name, description);
     }
 }
