@@ -1,11 +1,10 @@
-package com.devspods.services;
+package com.devspods.repositories;
 
-import com.devspods.domain.Post;
 import com.devspods.projections.PostBasicInfo;
 
 import java.util.List;
 
-public interface PostService extends CrudService<Post, Long> {
+public interface PostCustomRepository {
 
     List<PostBasicInfo> findPublishedPostsBasicInfo();
 }

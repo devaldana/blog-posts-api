@@ -1,6 +1,7 @@
 package com.devspods.controllers;
 
 import com.devspods.domain.Post;
+import com.devspods.projections.PostBasicInfo;
 import com.devspods.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +31,10 @@ public class PostController {
     }
 
     @GetMapping
-    public List<Post> findAll() {
+    public ResponseEntity findAll(@RequestParam(required = false) String status) {
 
-        return this.postService.findAll();
+        List<PostBasicInfo> posts = this.postService.findPublishedPostsBasicInfo();
+
+        return ResponseEntity.ok(posts);
     }
 }

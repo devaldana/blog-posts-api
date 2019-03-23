@@ -2,8 +2,11 @@ package com.devspods.domain;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -27,28 +30,36 @@ public class Post {
     @Column(columnDefinition = "text", nullable = false)
     private String excerpt;
 	
-    @Column(columnDefinition = "longtext", nullable = false)
-    private String content;
-	
     @Valid
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "status_id")
     private PostStatus status;
 
+    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+    private PostDetail postDetail;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @NotEmpty
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "posts_authors",
             joinColumns = { @JoinColumn(name = "post_id")},
             inverseJoinColumns = { @JoinColumn(name = "author_id")}
             )
-    private Set<Author> authors;
+    private Set<Author> authors = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "posts_technical_reviewers",
+            joinColumns = { @JoinColumn(name = "post_id")},
+            inverseJoinColumns = { @JoinColumn(name = "author_id")}
+    )
+    private Set<Author> technicalReviewers = new HashSet<>();
 
     public Post() {
 
@@ -92,14 +103,6 @@ public class Post {
         this.excerpt = excerpt;
     }
 
-    public String getContent() {
-        return this.content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public Category getCategory() {
         return this.category;
     }
@@ -130,5 +133,43 @@ public class Post {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    public Set<Author> getTechnicalReviewers() {
+        return technicalReviewers;
+    }
+
+    public void setTechnicalReviewers(Set<Author> technicalReviewers) {
+        this.technicalReviewers = technicalReviewers;
+    }
+
+    public void addAuthor(Author author){
+        getAuthors().add(author);
+    }
+
+    public  void addTechnicalReviewer(Author author){
+        getTechnicalReviewers().add(author);
+    }
+
+    public PostDetail getPostDetail() {
+        return postDetail;
+    }
+
+    public void setPostDetail(PostDetail postDetail) {
+        postDetail.setPost(this);
+        this.postDetail = postDetail;
+    }
+
+    public void setContent(String content){
+
+        if(getPostDetail() == null) setPostDetail(new PostDetail(content));
+        else getPostDetail().setContent(content);
+    }
+
+    public Optional<String> getContent(){
+
+        if(getPostDetail() != null) return Optional.ofNullable(getPostDetail().getContent());
+
+        return Optional.empty();
     }
 }
