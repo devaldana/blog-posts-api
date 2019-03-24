@@ -2,7 +2,6 @@ package com.devspods.services.impl;
 
 import com.devspods.domain.Category;
 import com.devspods.domain.Post;
-import com.devspods.projections.PostBasicInfo;
 import com.devspods.repositories.PostRepository;
 import com.devspods.services.CategoryService;
 import com.devspods.services.PostService;
@@ -52,13 +51,15 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> findAll() {
 
+        this.postRepository.findPostsBasicInfo();
+
         return this.postRepository.findAll();
     }
 
 
     @Override
-    public List<PostBasicInfo> findPublishedPostsBasicInfo() {
+    public String findPostsBasicInfo() {
 
-        return this.postRepository.findPublishedPostsBasicInfo();
+        return this.postRepository.findPostsBasicInfo();
     }
 }

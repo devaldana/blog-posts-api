@@ -7,4 +7,5 @@ import java.util.List;
 public interface PostCustomRepository {
 
     List<PostBasicInfo> findPublishedPostsBasicInfo();
+    String findPostsBasicInfo();
 }

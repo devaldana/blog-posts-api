@@ -1,5 +1,8 @@
 package com.devspods.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
@@ -41,7 +44,8 @@ public class Post {
     @JoinColumn(name = "status_id")
     private PostStatus status;
 
-    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("post")
+    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL)
     private PostDetail postDetail;
 
     @NotEmpty
@@ -166,6 +170,7 @@ public class Post {
         else getPostDetail().setContent(content);
     }
 
+    @JsonIgnore
     public Optional<String> getContent(){
 
         if(getPostDetail() != null) return Optional.ofNullable(getPostDetail().getContent());

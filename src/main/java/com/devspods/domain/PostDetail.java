@@ -14,7 +14,7 @@ public class PostDetail {
     private String content;
 
     @MapsId
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     private Post post;
 
     public PostDetail() {}

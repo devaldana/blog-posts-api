@@ -10,6 +10,14 @@ import java.util.List;
 @Repository
 public interface PostRepository extends CrudRepository<Post, Long>, PostCustomRepository {
 
-    @Query("SELECT post FROM Post post JOIN FETCH post.category JOIN FETCH post.status")
+    @Query("SELECT post FROM Post post " +
+           "JOIN FETCH post.category " +
+           "JOIN FETCH post.status " +
+           "JOIN FETCH post.postDetail " +
+           "JOIN FETCH post.authors aut " +
+           "JOIN FETCH aut.sex " +
+           "JOIN FETCH post.technicalReviewers revs " +
+           "JOIN FETCH revs.sex"
+    )
     List<Post> findAll();
 }
