@@ -27,29 +27,37 @@ public class Post {
     private LocalDateTime dateOfLastUpdate;
     private LocalDateTime dateOfPublication;
 
+    @NotEmpty
+    @Column(columnDefinition = "text", nullable = false)
+    private String permalink;
+
+    @NotEmpty
     @Column(columnDefinition = "text", nullable = false)
     private String title;
-	
+
+    @NotEmpty
     @Column(columnDefinition = "text", nullable = false)
     private String excerpt;
-	
+
     @Valid
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status_id")
     private PostStatus status;
 
+    @Valid
+    @NotNull
     @JsonIgnoreProperties("post")
-    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "post")
     private PostDetail postDetail;
 
     @NotEmpty
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "posts_authors",
             joinColumns = { @JoinColumn(name = "post_id")},
@@ -57,7 +65,7 @@ public class Post {
             )
     private Set<Author> authors = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "posts_technical_reviewers",
             joinColumns = { @JoinColumn(name = "post_id")},
@@ -75,6 +83,10 @@ public class Post {
         return this.id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public LocalDateTime getDateOfCreation() {
         return dateOfCreation;
     }
@@ -89,6 +101,14 @@ public class Post {
 
     public void setDateOfLastUpdate(LocalDateTime dateOfLastUpdate) {
         this.dateOfLastUpdate = dateOfLastUpdate;
+    }
+
+    public String getPermalink() {
+        return permalink;
+    }
+
+    public void setPermalink(String permalink) {
+        this.permalink = permalink;
     }
 
     public String getTitle() {
@@ -136,6 +156,7 @@ public class Post {
     }
 
     public void setAuthors(Set<Author> authors) {
+
         this.authors = authors;
     }
 

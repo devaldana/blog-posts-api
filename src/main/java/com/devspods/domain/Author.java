@@ -33,9 +33,9 @@ public class Author {
 
     @Valid
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "sex_id")
-    private Sex sex;
+    @ManyToOne
+    @JoinColumn(name = "gender_id")
+    private Gender gender;
 
     public Author(){
 
@@ -90,11 +90,11 @@ public class Author {
         this.dateOfSingUp = dateOfSingUp;
     }
 
-    public Sex getSex() {
-        return sex;
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setSex(Sex sex) {
-        this.sex = sex;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 }

@@ -16,28 +16,27 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     public CategoryServiceImpl(CategoryRepository categoryRepository){
-
         this.categoryRepository = categoryRepository;
     }
 
     @Override
-    public Category save(Category entity) {
-        return null;
+    public Category save(Category category) {
+        return this.categoryRepository.save(category);
     }
 
     @Override
     public Category findById(final Long id) {
-		
-        return this.categoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Category not found with the provided ID"));
+        return this.categoryRepository.findById(id)
+                                      .orElseThrow(() -> new EntityNotFoundException("Category not found with the provided ID"));
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
+    public void deleteById(Long id) {
+        this.categoryRepository.deleteById(id);
     }
 
     @Override
     public List<Category> findAll() {
-        return (List<Category>) this.categoryRepository.findAll();
+        return this.categoryRepository.findAll();
     }
 }

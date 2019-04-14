@@ -17,13 +17,11 @@ public class CategoryController {
 
     @Autowired
     public CategoryController(CategoryService categoryService){
-
         this.categoryService = categoryService;
     }
 
     @GetMapping
     public List<Category> findAll() {
-
         return this.categoryService.findAll();
     }
 }

@@ -18,23 +18,18 @@ public class PostController {
 
     @Autowired
     public PostController(PostService postService){
-
         this.postService = postService;
     }
 	
     @PostMapping
     public ResponseEntity<Post> save(@RequestBody @NotNull @Valid final Post post) {
-
         Post savedPost = this.postService.save(post);
-
         return ResponseEntity.ok(savedPost);
     }
 
     @GetMapping
     public ResponseEntity findAll(@RequestParam(required = false) String status) {
-
         String posts = this.postService.findPostsBasicInfo();
-
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(posts);
     }
 }
