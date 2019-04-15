@@ -1,6 +1,7 @@
 package com.devspods.controllers;
 
 import com.devspods.domain.Post;
+import com.devspods.projections.PostBasicInfo;
 import com.devspods.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,8 +23,8 @@ public class PostController {
     }
 	
     @PostMapping
-    public ResponseEntity<Post> save(@RequestBody @NotNull @Valid final Post post) {
-        Post savedPost = this.postService.save(post);
+    public ResponseEntity<PostBasicInfo> save(@RequestBody @NotNull @Valid Post post) {
+        PostBasicInfo savedPost = this.postService.saveAndGetBasicInfo(post);
         return ResponseEntity.ok(savedPost);
     }
 

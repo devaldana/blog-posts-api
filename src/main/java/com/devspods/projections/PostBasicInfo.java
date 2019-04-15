@@ -30,55 +30,62 @@ public class PostBasicInfo {
         return id;
     }
 
-    public void setId(Long id) {
+    public PostBasicInfo setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public PostBasicInfo setTitle(String title) {
         this.title = title;
+        return this;
     }
 
     public LocalDateTime getDateOfPublication() {
         return dateOfPublication;
     }
 
-    public void setDateOfPublication(LocalDateTime dateOfPublication) {
+    public PostBasicInfo setDateOfPublication(LocalDateTime dateOfPublication) {
         this.dateOfPublication = dateOfPublication;
+        return this;
     }
 
     public LocalDateTime getDateOfLastUpdate() {
         return dateOfLastUpdate;
     }
 
-    public void setDateOfLastUpdate(LocalDateTime dateOfLastUpdate) {
+    public PostBasicInfo setDateOfLastUpdate(LocalDateTime dateOfLastUpdate) {
         this.dateOfLastUpdate = dateOfLastUpdate;
+        return this;
     }
 
     public String getExcerpt() {
         return excerpt;
     }
 
-    public void setExcerpt(String excerpt) {
+    public PostBasicInfo setExcerpt(String excerpt) {
         this.excerpt = excerpt;
+        return this;
     }
 
     public String getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public PostBasicInfo setCategory(String category) {
         this.category = category;
+        return this;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public PostBasicInfo setStatus(String status) {
         this.status = status;
+        return this;
     }
 }
