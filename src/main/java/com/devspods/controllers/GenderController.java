@@ -25,12 +25,12 @@ public class GenderController {
 
     @GetMapping
     public List<Gender> findAll(){
-        return this.genderService.findAll();
+        return genderService.findAll();
     }
 
     @PostMapping
     public ResponseEntity<Gender> save(@RequestBody @NotNull @Valid Gender gender) {
-        Gender savedGender = this.genderService.save(gender);
+        Gender savedGender = genderService.save(gender);
         return ResponseEntity.status(CREATED).body(savedGender);
     }
 }

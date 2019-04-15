@@ -16,11 +16,11 @@ public class Category extends Type {
 
     public Category(){}
 
-    public Category(final String name){
+    public Category(String name){
         super(name);
     }
 
-    public Category(final String name, final String description){
+    public Category(String name, String description){
         super(name, description);
     }
 

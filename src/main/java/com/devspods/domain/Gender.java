@@ -17,11 +17,11 @@ public class Gender extends Type {
 
     public Gender(){}
 
-    public Gender(final String name){
+    public Gender(String name){
         super(name);
     }
 
-    public Gender(final String name, final String description){
+    public Gender(String name, String description){
         super(name, description);
     }
 

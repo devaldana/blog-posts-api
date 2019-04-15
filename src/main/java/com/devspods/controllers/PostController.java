@@ -24,13 +24,13 @@ public class PostController {
 	
     @PostMapping
     public ResponseEntity<PostBasicInfo> save(@RequestBody @NotNull @Valid Post post) {
-        PostBasicInfo savedPost = this.postService.saveAndGetBasicInfo(post);
+        PostBasicInfo savedPost = postService.saveAndGetBasicInfo(post);
         return ResponseEntity.ok(savedPost);
     }
 
     @GetMapping
     public ResponseEntity findAll(@RequestParam(required = false) String status) {
-        String posts = this.postService.findPostsBasicInfo();
+        String posts = postService.findPostsBasicInfo();
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(posts);
     }
 }

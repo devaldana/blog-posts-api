@@ -21,22 +21,22 @@ public class GenderServiceImpl implements GenderService {
 
     @Override
     public Gender save(Gender gender) {
-        return this.genderRepository.save(gender);
+        return genderRepository.save(gender);
     }
 
     @Override
     public Gender findById(Long id) {
-        return this.genderRepository.findById(id)
-                                    .orElseThrow(() -> new EntityNotFoundException("Gender not found with the given ID"));
+        return genderRepository.findById(id)
+                               .orElseThrow(() -> new EntityNotFoundException("Gender not found with the given ID"));
     }
 
     @Override
     public void deleteById(Long id) {
-        this.genderRepository.deleteById(id);
+        genderRepository.deleteById(id);
     }
 
     @Override
     public List<Gender> findAll() {
-        return this.genderRepository.findAll();
+        return genderRepository.findAll();
     }
 }

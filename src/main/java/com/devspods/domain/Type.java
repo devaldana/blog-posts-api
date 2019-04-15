@@ -19,17 +19,17 @@ public abstract class Type {
 
     public Type() {}
 
-    public Type(final String name) {
+    public Type(String name) {
         this.name = name;
     }
 
-    public Type(final String name, final String description) {
+    public Type(String name, String description) {
         this(name);
         this.description = description;
     }
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -37,7 +37,7 @@ public abstract class Type {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {

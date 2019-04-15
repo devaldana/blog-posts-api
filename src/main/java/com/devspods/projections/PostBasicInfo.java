@@ -8,8 +8,6 @@ public class PostBasicInfo {
     private String title;
     private LocalDateTime dateOfCreation;
 
-    /* Authors and Reviewers information pending */
-
     public PostBasicInfo(){}
 
     public PostBasicInfo(long id, String title, LocalDateTime dateOfCreation) {
@@ -18,11 +16,11 @@ public class PostBasicInfo {
         this.dateOfCreation = dateOfCreation;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public PostBasicInfo setId(Long id) {
+    public PostBasicInfo setId(long id) {
         this.id = id;
         return this;
     }

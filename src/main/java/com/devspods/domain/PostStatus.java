@@ -12,13 +12,13 @@ public class PostStatus extends Type {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "status")
     private Set<Post> posts = new HashSet<>();
 
-    public PostStatus(){}
+    public PostStatus() {}
 
-    public PostStatus(final String name){
+    public PostStatus(String name) {
         super(name);
     }
 
-    public PostStatus(final String name, final String description){
+    public PostStatus(String name, String description) {
         super(name, description);
     }
 

@@ -71,13 +71,12 @@ public class Post {
     private Set<Author> technicalReviewers = new HashSet<>();
 
     public Post() {
-
         this.dateOfCreation = LocalDateTime.now();
         this.dateOfLastUpdate = this.dateOfCreation;
     }
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -93,7 +92,7 @@ public class Post {
     }
 
     public LocalDateTime getDateOfLastUpdate() {
-        return this.dateOfLastUpdate;
+        return dateOfLastUpdate;
     }
 
     public void setDateOfLastUpdate(LocalDateTime dateOfLastUpdate) {
@@ -109,7 +108,7 @@ public class Post {
     }
 
     public String getTitle() {
-        return this.title;
+        return title;
     }
 
     public void setTitle(String title) {
@@ -117,7 +116,7 @@ public class Post {
     }
 
     public String getExcerpt() {
-        return this.excerpt;
+        return excerpt;
     }
 
     public void setExcerpt(String excerpt) {
@@ -125,7 +124,7 @@ public class Post {
     }
 
     public Category getCategory() {
-        return this.category;
+        return category;
     }
 
     public void setCategory(Category category) {
@@ -153,7 +152,6 @@ public class Post {
     }
 
     public void setAuthors(Set<Author> authors) {
-
         this.authors = authors;
     }
 
@@ -166,11 +164,11 @@ public class Post {
     }
 
     public void addAuthor(Author author){
-        getAuthors().add(author);
+        authors.add(author);
     }
 
     public  void addTechnicalReviewer(Author author){
-        getTechnicalReviewers().add(author);
+        technicalReviewers.add(author);
     }
 
     public PostDetail getPostDetail() {
@@ -183,13 +181,12 @@ public class Post {
     }
 
     public void setContent(String content){
-
-        if(getPostDetail() == null) setPostDetail(new PostDetail(content));
-        else getPostDetail().setContent(content);
+        if(postDetail == null) setPostDetail(new PostDetail(content));
+        else postDetail.setContent(content);
     }
 
     public Optional<String> getContent(){
-        if(getPostDetail() != null) return Optional.ofNullable(getPostDetail().getContent());
+        if(postDetail != null) return Optional.ofNullable(getPostDetail().getContent());
         return Optional.empty();
     }
 }

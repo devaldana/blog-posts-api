@@ -21,22 +21,22 @@ public class PostStatusServiceImpl implements PostStatusService {
 
     @Override
     public PostStatus save(PostStatus status) {
-        return this.postStatusRepository.save(status);
+        return postStatusRepository.save(status);
     }
 
     @Override
     public PostStatus findById(Long id) {
-        return this.postStatusRepository.findById(id)
-                                        .orElseThrow(() -> new EntityNotFoundException("PostStatus not found with the given ID"));
+        return postStatusRepository.findById(id)
+                                   .orElseThrow(() -> new EntityNotFoundException("PostStatus not found with the given ID"));
     }
 
     @Override
     public void deleteById(Long id) {
-        this.postStatusRepository.deleteById(id);
+        postStatusRepository.deleteById(id);
     }
 
     @Override
     public List<PostStatus> findAll() {
-        return this.postStatusRepository.findAll();
+        return postStatusRepository.findAll();
     }
 }

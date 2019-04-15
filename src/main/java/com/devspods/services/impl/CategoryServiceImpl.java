@@ -21,22 +21,22 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category save(Category category) {
-        return this.categoryRepository.save(category);
+        return categoryRepository.save(category);
     }
 
     @Override
-    public Category findById(final Long id) {
-        return this.categoryRepository.findById(id)
-                                      .orElseThrow(() -> new EntityNotFoundException("Category not found with the provided ID"));
+    public Category findById(Long id) {
+        return categoryRepository.findById(id)
+                                 .orElseThrow(() -> new EntityNotFoundException("Category not found with the provided ID"));
     }
 
     @Override
     public void deleteById(Long id) {
-        this.categoryRepository.deleteById(id);
+        categoryRepository.deleteById(id);
     }
 
     @Override
     public List<Category> findAll() {
-        return this.categoryRepository.findAll();
+        return categoryRepository.findAll();
     }
 }

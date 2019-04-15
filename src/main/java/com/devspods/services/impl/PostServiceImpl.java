@@ -27,39 +27,39 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post save(final Post post) throws RequiredAttributeNotFoundException {
+    public Post save(Post post) throws RequiredAttributeNotFoundException {
         validateRequiredAttributes(post);
-        return this.postRepository.save(post);
+        return postRepository.save(post);
     }
 
     @Override
-    public PostBasicInfo saveAndGetBasicInfo(final Post post) {
+    public PostBasicInfo saveAndGetBasicInfo(Post post) {
         Post savedPost = save(post);
         return convertFromPostToPostBasicInfo(savedPost);
     }
 
     @Override
     public Post findById(Long id) {
-        return this.postRepository.findById(id)
-                                  .orElseThrow(() -> new EntityNotFoundException("Post not found with the given ID"));
+        return postRepository.findById(id)
+                             .orElseThrow(() -> new EntityNotFoundException("Post not found with the given ID"));
     }
 
     @Override
     public void deleteById(Long id) {
-        this.postRepository.deleteById(id);
+        postRepository.deleteById(id);
     }
 
     @Override
     public List<Post> findAll() {
-        return this.postRepository.findAll();
+        return postRepository.findAll();
     }
 
     @Override
     public String findPostsBasicInfo() {
-        return this.postRepository.findPostsBasicInfo();
+        return postRepository.findPostsBasicInfo();
     }
 
-    private void validateRequiredAttributes(final Post post) throws RequiredAttributeNotFoundException {
+    private void validateRequiredAttributes(Post post) throws RequiredAttributeNotFoundException {
         if( post.getCategory().getId() == null ||
             post.getStatus().getId() == null) throw new RequiredAttributeNotFoundException("Category or PostStatus was not founded");
 

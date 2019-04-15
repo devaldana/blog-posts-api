@@ -21,22 +21,22 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author save(Author author) {
-        return this.authorRepository.save(author);
+        return authorRepository.save(author);
     }
 
     @Override
     public Author findById(Long id) {
-        return this.authorRepository.findById(id)
-                   .orElseThrow(() -> new EntityNotFoundException("Author not found with the given ID"));
+        return authorRepository.findById(id)
+                               .orElseThrow(() -> new EntityNotFoundException("Author not found with the given ID"));
     }
 
     @Override
     public void deleteById(Long id) {
-        this.authorRepository.deleteById(id);
+        authorRepository.deleteById(id);
     }
 
     @Override
     public List<Author> findAll() {
-        return this.authorRepository.findAll();
+        return authorRepository.findAll();
     }
 }

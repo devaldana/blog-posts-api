@@ -38,7 +38,6 @@ public class Author {
     private Gender gender;
 
     public Author(){
-
         this.dateOfSingUp = LocalDateTime.now();
     }
 
