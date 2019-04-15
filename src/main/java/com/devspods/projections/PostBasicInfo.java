@@ -4,26 +4,18 @@ import java.time.LocalDateTime;
 
 public class PostBasicInfo {
 
-    private Long id;
+    private long id;
     private String title;
-    private LocalDateTime dateOfPublication;
-    private LocalDateTime dateOfLastUpdate;
-    private String excerpt;
-    private String category;
-    private String status;
+    private LocalDateTime dateOfCreation;
 
     /* Authors and Reviewers information pending */
 
     public PostBasicInfo(){}
 
-    public PostBasicInfo(Long id, String title, LocalDateTime dateOfPublication, LocalDateTime dateOfLastUpdate, String excerpt, String category, String status) {
+    public PostBasicInfo(long id, String title, LocalDateTime dateOfCreation) {
         this.id = id;
         this.title = title;
-        this.dateOfPublication = dateOfPublication;
-        this.dateOfLastUpdate = dateOfLastUpdate;
-        this.excerpt = excerpt;
-        this.category = category;
-        this.status = status;
+        this.dateOfCreation = dateOfCreation;
     }
 
     public Long getId() {
@@ -44,48 +36,12 @@ public class PostBasicInfo {
         return this;
     }
 
-    public LocalDateTime getDateOfPublication() {
-        return dateOfPublication;
+    public LocalDateTime getDateOfCreation() {
+        return dateOfCreation;
     }
 
-    public PostBasicInfo setDateOfPublication(LocalDateTime dateOfPublication) {
-        this.dateOfPublication = dateOfPublication;
-        return this;
-    }
-
-    public LocalDateTime getDateOfLastUpdate() {
-        return dateOfLastUpdate;
-    }
-
-    public PostBasicInfo setDateOfLastUpdate(LocalDateTime dateOfLastUpdate) {
-        this.dateOfLastUpdate = dateOfLastUpdate;
-        return this;
-    }
-
-    public String getExcerpt() {
-        return excerpt;
-    }
-
-    public PostBasicInfo setExcerpt(String excerpt) {
-        this.excerpt = excerpt;
-        return this;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public PostBasicInfo setCategory(String category) {
-        this.category = category;
-        return this;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public PostBasicInfo setStatus(String status) {
-        this.status = status;
+    public PostBasicInfo setDateOfCreation(LocalDateTime dateOfCreation) {
+        this.dateOfCreation = dateOfCreation;
         return this;
     }
 }
