@@ -2,9 +2,8 @@ package com.devspods.util.helpers;
 
 import com.devspods.domain.Post;
 import com.devspods.projections.PostBasicInfo;
-import com.devspods.util.Util;
 
-import java.util.Objects;
+import static com.devspods.util.Util.isNull;
 
 public final class PostServiceHelper {
 
@@ -14,7 +13,7 @@ public final class PostServiceHelper {
     }
 
     private static void validateParams(Post post){
-        if(Objects.isNull(post) || Util.isNull(post.getId(), post.getTitle(), post.getDateOfCreation()))
+        if(isNull(post) || isNull(post.getId(), post.getTitle(), post.getDateOfCreation()))
             throw new IllegalArgumentException("Invalid post or invalid post attributes");
     }
 }
