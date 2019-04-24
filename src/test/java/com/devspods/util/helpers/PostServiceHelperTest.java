@@ -6,7 +6,10 @@ import com.devspods.projections.PostBasicInfo;
 import org.junit.jupiter.api.Test;
 
 import static com.devspods.util.helpers.PostServiceHelper.convertFromPostToPostBasicInfo;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PostServiceHelperTest {
 

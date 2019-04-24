@@ -11,7 +11,6 @@ public class UtilTest {
 
     @Test
     public void validatingNulls(){
-
         // isNull method
         assertTrue(isNull(null));
         assertTrue(isNull(null, new Object()));
@@ -25,6 +24,5 @@ public class UtilTest {
         assertTrue(notNulls(new Object()));
         assertTrue(notNulls(new Object(), new Object()));
         assertFalse(notNulls(new Object(), new Object(), null));
-
     }
 }
